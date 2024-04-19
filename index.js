@@ -21,7 +21,7 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
-  //NAV-BAR
+  //SIDE-BAR
   sidebarDiv: document.getElementById("side-bar-div"),
   sidelogoDiv: document.getElementById("side-logo-div"),
   boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
@@ -31,7 +31,43 @@ const elements = {
   labelCheckboxTheme: document.getElementById("label-checkbox-theme"),
   hideSideBarDiv: document.querySelector("hide-side-bar-div"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
-  showSideBarBtn: document.getElementById("show-side-bar-btn")
+
+  //SHOW SIDE-BAR BTN
+  showSideBarBtn: document.getElementById("show-side-bar-btn"),
+
+  //MAIN LAYOUT 
+  layout: document.getElementById("layout"),
+
+  //HEADER
+  header: document.getElementById("header"),
+  headerNameDiv: document.querySelector("header-name-div"),
+  headerBoardName: document.getElementById("header-board-name"),
+  dropdownBtn: document.getElementById("dropdownBtn"),
+  addNewTaskBtn: document.getElementById("add-new-task-btn"),
+  editBtn: document.getElementById("edit-board-btn"),
+  editBoardDiv: document.getElementById("editBoardDiv"),
+  deleteBoardBtn: document.getElementById("deleteBoardBtn"),
+
+  //CONTAINER
+  container: document.querySelector("container"),
+
+  //MAIN (contains repititions)
+  cardColumnMain: document.querySelector("card-column-main"),
+  columnDiv: document.querySelector("column-div"),
+  taskContainerAll: document.querySelector("tasks-container"),
+
+
+  //TODO
+  todoHeadDiv: document.getElementById("todo-head-div"), 
+
+  //DOING
+  doingHeadDiv: document.getElementById("doing-head-div"),
+
+  //DONE
+  doneHeadDiv: document.getElementById("done-head-div"),
+
+  //NEW TASK MODAL (form for creating new a task)
+  
 }
 
 let activeBoard = ""

@@ -58,121 +58,133 @@
         </div>
       </div>
     </nav>
+
+    <!--Show Side-Bar Btn-->
     <button id="show-side-bar-btn">
       <img src="./assets/icon-show-sidebar.svg" alt="icon-show-sidebar" />
     </button>
-    <!--10-->
 
     <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
     <div id="layout">
+      <!--1-->
       <header id="header" class="sticky-header">
+        <!--2-->
         <div class="header-name-div">
+          <!--3-->
           <img
             src="./assets/logo-mobile.svg"
             alt="logo-mobile"
             class="logo-mobile"
           />
           <h2 class="header-board-name" id="header-board-name"></h2>
+          <!--4-->
           <button class="dropdownBtn" id="dropdownBtn">
             <img
               src="./assets/icon-chevron-down.svg"
               alt="icon-chevron-down"
               class="icon-chevron-down"
               id="dropDownIcon"
-            />
-          </button>
+            /></button
+          ><!--5-->
         </div>
-        <button id="add-new-task-btn" class="primary-btn">
-          + Add New Task
-        </button>
+
+        <button id="add-new-task-btn" class="primary-btn">+ Add New Task</button
+        ><!--6-->
+
         <button class="edit-btn" id="edit-board-btn">
-          <p id="three-dots-icon">&#8942;</p>
-        </button>
+          <p id="three-dots-icon">&#8942;</p></button
+        ><!--7-->
+        
         <div id="editBoardDiv" class="editBtnsDiv">
-          <button class="editBtns" id="deleteBoardBtn">Delete Board</button>
+          <button class="editBtns" id="deleteBoardBtn">Delete Board</button
+          ><!--8-->
         </div>
+        <!--9-->
       </header>
 
-      <div class="container">
-        <main class="card-column-main">
+      <div class="container"><!--1-->
+        <main class="card-column-main"> <!--2-->
+
           <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
-          <div class="column-div" data-status="todo">
-            <div id="todo-head-div" class="column-head-div">
+          <div class="column-div" data-status="todo"><!--3-->
+            <div id="todo-head-div" class="column-head-div"><!--4-->
               <span class="dot" id="todo-dot"></span>
               <h4 id="toDoText" class="columnHeader">TODO</h4>
             </div>
             <!-- Tasks container for TODO -->
-            <div class="tasks-container"></div>
+            <div class="tasks-container"></div><!--5-->
           </div>
+
           <!-- DOING Column -->
-          <div class="column-div" data-status="doing">
-            <div id="doing-head-div" class="column-head-div">
+          <div class="column-div" data-status="doing"><!--6-->
+            <div id="doing-head-div" class="column-head-div"><!--7-->
               <span class="dot" id="doing-dot"></span>
               <h4 id="doingText" class="columnHeader">DOING</h4>
             </div>
             <!-- Tasks container for DOING -->
-            <div class="tasks-container"></div>
+            <div class="tasks-container"></div><!--8-->
           </div>
+
           <!-- DONE Column -->
-          <div class="column-div" data-status="done">
-            <div id="done-head-div" class="column-head-div">
+          <div class="column-div" data-status="done"><!--9-->
+            <div id="done-head-div" class="column-head-div"><!--10-->
               <span class="dot" id="done-dot"></span>
               <h4 id="doneText" class="columnHeader">DONE</h4>
             </div>
             <!-- Tasks container for DONE -->
-            <div class="tasks-container"></div>
+            <div class="tasks-container"></div><!--11-->
           </div>
         </main>
       </div>
     </div>
 
     <!-- New Task Modal: Form for adding a new task. -->
-    <form class="modal-window" id="new-task-modal-window">
+    <form class="modal-window" id="new-task-modal-window"><!--1-->
       <h4 class="modal-title">Add New Task</h4>
-      <div class="input-div">
+      <div class="input-div"><!--2-->
         <label
           class="label-modal-window"
           id="modal-title-input"
           for="title-input"
           >Title</label
-        >
+        ><!--3-->
         <input
           type="text"
           class="modal-input"
           id="title-input"
           placeholder="e.g. Take a little break"
-        />
+        /><!--4-->
       </div>
-      <div class="input-div">
+      <div class="input-div"><!--5-->
         <label class="label-modal-window" id="modal-desc-input" for="desc-input"
           >Description</label
-        >
+        ><!--6-->
         <textarea
           name="description"
           id="desc-input"
           placeholder="e.g. Pet your dog, have a cup of coffee, dance to your favourite song and come back to conquer this challenge. 💪🏾"
-        ></textarea>
+        ></textarea><!--7-->
       </div>
-      <div class="input-div">
+      <div class="input-div"><!--8-->
         <label
           class="label-modal-window"
           id="modal-select-status"
           for="select-status"
           >Status</label
-        >
+        ><!--9-->
         <select name="status" id="select-status">
           <option value="todo">todo</option>
           <option value="doing">doing</option>
           <option value="done">done</option>
-        </select>
+        </select><!--10-->
       </div>
-      <div class="button-group">
+      <div class="button-group"><!--11-->
         <button type="submit" class="submit-btn" id="create-task-btn">
           Create Task
-        </button>
+        </button><!--12-->
         <button type="button" class="submit-btn" id="cancel-add-task-btn">
           Cancel
-        </button>
+        </button><!--13-->
       </div>
     </form>
 
