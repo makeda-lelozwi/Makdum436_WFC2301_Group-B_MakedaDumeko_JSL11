@@ -21,7 +21,17 @@ function initializeData() {
 
 // TASK: Get elements from the DOM
 const elements = {
-
+  //NAV-BAR
+  sidebarDiv: document.getElementById("side-bar-div"),
+  sidelogoDiv: document.getElementById("side-logo-div"),
+  boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
+  sideBarBottom: document.querySelector("side-bar-bottom"),
+  toggleDiv: document.querySelector("toggle-div"),
+  switch: document.getElementById("switch"),
+  labelCheckboxTheme: document.getElementById("label-checkbox-theme"),
+  hideSideBarDiv: document.querySelector("hide-side-bar-div"),
+  hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
+  showSideBarBtn: document.getElementById("show-side-bar-btn")
 }
 
 let activeBoard = ""
