@@ -1,7 +1,5 @@
 
 import {getTasks, createNewTask, patchTask, deleteTask, putTask} from "utils/taskFunction.js"
-
-
 import { initialData } from "./initialData";
 
 
@@ -19,17 +17,18 @@ function initializeData() {
   }
 }
 
-// TASK: Get elements from the DOM
+
 const elements = {
   //SIDE-BAR
+  sidebar: document.querySelector(".side-bar"),
   sidebarDiv: document.getElementById("side-bar-div"),
   sidelogoDiv: document.getElementById("side-logo-div"),
   boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
-  sideBarBottom: document.querySelector("side-bar-bottom"),
-  toggleDiv: document.querySelector("toggle-div"),
+  sideBarBottom: document.querySelector(".side-bar-bottom"),
+  toggleDiv: document.querySelector(".toggle-div"),
   switch: document.getElementById("switch"),
   labelCheckboxTheme: document.getElementById("label-checkbox-theme"),
-  hideSideBarDiv: document.querySelector("hide-side-bar-div"),
+  hideSideBarDiv: document.querySelector(".hide-side-bar-div"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
 
   //SHOW SIDE-BAR BTN
@@ -40,7 +39,7 @@ const elements = {
 
   //HEADER
   header: document.getElementById("header"),
-  headerNameDiv: document.querySelector("header-name-div"),
+  headerNameDiv: document.querySelector(".header-name-div"),
   headerBoardName: document.getElementById("header-board-name"),
   dropdownBtn: document.getElementById("dropdownBtn"),
   addNewTaskBtn: document.getElementById("add-new-task-btn"),
@@ -49,12 +48,12 @@ const elements = {
   deleteBoardBtn: document.getElementById("deleteBoardBtn"),
 
   //CONTAINER
-  container: document.querySelector("container"),
+  container: document.querySelector(".container"),
 
   //MAIN (contains repititions)
-  cardColumnMain: document.querySelector("card-column-main"),
-  columnDiv: document.querySelector("column-div"),
-  taskContainerAll: document.querySelector("tasks-container"),
+  cardColumnMain: document.querySelector(".card-column-main"),
+  columnDiv: document.querySelector(".column-div"),
+  taskContainerAll: document.querySelector(".tasks-container"),
 
 
   //TODO
@@ -75,7 +74,7 @@ const elements = {
   descInput: document.getElementById("desc-input"),
   modalSelectStatus: document.getElementById("modal-select-status"),
   selectStatus: document.getElementById("select-status"),
-  btnGroup: document.querySelector("button-group"),
+  btnGroup: document.querySelector(".button-group"),
   createTaskBtn: document.getElementById("create-task-btn"),
   cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
 
@@ -83,13 +82,13 @@ const elements = {
   editTaskModalWindow: document.getElementById("edit-task-modal-window"),
   editTaskForm: document.getElementById("edit-task-form"),
   editTaskHeader: document.getElementById("edit-task-header"),
-  editTaskDiv: document.querySelector("edit-task-div"),
+  editTaskDiv: document.querySelector(".edit-task-div"),
   editTaskTitleInput: document.getElementById("edit-task-title-input"),
   editBtn: document.getElementById("edit-btn"),
   editTaskDescInput: document.getElementById("edit-task-desc-input"),
-  labelModalWindow: document.querySelector("label-modal-window"),
+  labelModalWindow: document.querySelector(".label-modal-window"),
   editSelectStatus: document.getElementById("edit-select-status"),
-  editTaskDivBtnGrp: document.querySelector("edit-task-div button-group"),
+  editTaskDivBtnGrp: document.querySelector(".edit-task-div button-group"),
   saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
   cancelEditBtn: document.getElementById("cancel-edit-btn"),
   deleteTaskBtn: document.getElementById("delete-task-btn"),
