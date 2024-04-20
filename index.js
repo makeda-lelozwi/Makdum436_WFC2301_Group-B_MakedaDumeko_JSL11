@@ -7,6 +7,10 @@ import {
 } from "./utils/taskFunctions.js";
 import { initialData } from "./initialData.js";
 
+//TO:DO
+// 1. make it so the sidebar stays open/closed after refreshing depending on what was selected before refresh
+// 2. get started with displaying the names of the boards onto the sidebar
+
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
