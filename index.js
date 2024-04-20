@@ -4,7 +4,7 @@ import {
   patchTask,
   deleteTask,
   putTask,
-} from "./utils/taskFunction.js";
+} from "./utils/taskFunctions.js";
 import { initialData } from "./initialData.js";
 
 /*************************************************************************************************************************************************
@@ -29,7 +29,7 @@ const elements = {
   boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
   sideBarBottom: document.querySelector(".side-bar-bottom"),
   toggleDiv: document.querySelector(".toggle-div"),
-  switch: document.getElementById("switch"),
+  themeSwitch: document.getElementById("switch"),
   labelCheckboxTheme: document.getElementById("label-checkbox-theme"),
   hideSideBarDiv: document.querySelector(".hide-side-bar-div"),
   hideSideBarBtn: document.getElementById("hide-side-bar-btn"),
@@ -68,6 +68,7 @@ const elements = {
   doneHeadDiv: document.getElementById("done-head-div"),
 
   //NEW TASK MODAL (form for creating new a task)
+  modalWindow: document.querySelector("modal-window"),
   newTaskModalWindow: document.getElementById("new-task-modal-window"),
   inputDiv: document.getElementById("input-div"),
   modalTitleInput: document.getElementById("modal-title-input"),
@@ -77,11 +78,11 @@ const elements = {
   modalSelectStatus: document.getElementById("modal-select-status"),
   selectStatus: document.getElementById("select-status"),
   btnGroup: document.querySelector(".button-group"),
-  createTaskBtn: document.getElementById("create-task-btn"),
+  createNewTaskBtn: document.getElementById("create-task-btn"),
   cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
 
   //EDIT TASK MODAL (form for editing an exisiting task's details)
-  editTaskModalWindow: document.getElementById("edit-task-modal-window"),
+  editTaskModal: document.getElementById("edit-task-modal-window"),
   editTaskForm: document.getElementById("edit-task-form"),
   editTaskHeader: document.getElementById("edit-task-header"),
   editTaskDiv: document.querySelector(".edit-task-div"),
@@ -144,7 +145,7 @@ function filterAndDisplayTasksByBoard(boardName) {
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
-  elements.columnDivs.forEach((column) => {
+  elements.columnDiv.forEach((column) => {
     const status = column.getAttribute("data-status");
     // Reset column content while preserving the column title
     column.innerHTML = `<div class="column-head-div">
@@ -250,9 +251,9 @@ function setupEventListeners() {
   });
 
   // Add new task form submission event listener
-  elements.modalWindow.addEventListener("submit", (event) => {
-    addTask(event);
-  });
+  // elements.modalWindow.addEventListener("submit", (event) => {
+  //   addTask(event);
+  // });
 }
 
 // Toggles tasks modal
