@@ -283,10 +283,12 @@ function addTask(event) {
 
 function toggleSidebar(show) {
   if (show) {
-    console.log("right button clicked");
+    console.log("show sidebar button clicked");
     elements.sidebar.style.display = "flex";
+    elements.showSideBarBtn.style.display = "none";
   } else {
     elements.sidebar.style.display = "none";
+    elements.showSideBarBtn.style.display = "block";
   }
 }
 
