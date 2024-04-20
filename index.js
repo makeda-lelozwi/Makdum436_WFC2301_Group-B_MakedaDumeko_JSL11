@@ -67,7 +67,19 @@ const elements = {
   doneHeadDiv: document.getElementById("done-head-div"),
 
   //NEW TASK MODAL (form for creating new a task)
-  
+  newTaskModalWindow: document.getElementById("new-task-modal-window"),
+  inputDiv: document.getElementById("input-div"),
+  modalTitleInput: document.getElementById("modal-title-input"),
+  titleInput: document.getElementById("title-input"),
+  modalDescInput: document.getElementById("modal-desc-input"),
+  descInput: document.getElementById("desc-input"),
+  modalSelectStatus: document.getElementById("modal-select-status"),
+  selectStatus: document.getElementById("select-status"),
+  btnGroup: document.querySelector("button-group"),
+  createTaskBtn: document.getElementById("create-task-btn"),
+  cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
+
+  //
 }
 
 let activeBoard = ""
