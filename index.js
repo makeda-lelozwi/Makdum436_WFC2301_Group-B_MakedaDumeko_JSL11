@@ -234,8 +234,8 @@ function setupEventListeners() {
   });
 
   // Show sidebar event listener
-  elements.hideSideBarBtn.click() => toggleSidebar(false));
-  elements.showSideBarBtn.click() => toggleSidebar(true));
+  elements.hideSideBarBtn.addEventListener("click", function() {toggleSidebar(false)});
+  elements.showSideBarBtn.addEventListener("click", function() {toggleSidebar(true)});
 
   // Theme switch event listener
   elements.themeSwitch.addEventListener('change', toggleTheme);
@@ -281,7 +281,11 @@ function addTask(event) {
 
 
 function toggleSidebar(show) {
- 
+  if (show) {
+    elements.sidebar.style.display = "flex";
+  } else {
+    elements.sidebar.style.display = "none";
+  }
 }
 
 function toggleTheme() {
