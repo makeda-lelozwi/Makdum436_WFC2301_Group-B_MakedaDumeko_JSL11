@@ -291,6 +291,7 @@ function toggleSidebar(show) {
     elements.showSideBarBtn.style.display = "block";
   }
 }
+//how do I make it so that the sidebar stays in the chosen setting after i refresh the page?
 
 function toggleTheme() {}
 
