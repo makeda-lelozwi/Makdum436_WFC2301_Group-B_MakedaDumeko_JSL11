@@ -189,44 +189,44 @@
     </form>
 
     <!-- Edit Task Modal: Form for editing an existing task's details. -->
-    <div class="edit-task-modal-window">
-      <form id="edit-task-form">
-        <div class="edit-task-div" id="edit-task-header">
+    <div class="edit-task-modal-window"><!--1-->
+      <form id="edit-task-form"><!--2-->
+        <div class="edit-task-div" id="edit-task-header"><!--3-->
           <input
             type="text"
             id="edit-task-title-input"
             class="task-title-input"
             placeholder="Task Title"
-          />
-          <button id="edit-btn" class="edit-btn"></button>
+          /><!--4-->
+          <button id="edit-btn" class="edit-btn"></button><!--5-->
         </div>
-        <div class="edit-task-div">
+        <div class="edit-task-div"><!--6-->
           <textarea
             id="edit-task-desc-input"
             class="edit-task-description-input"
             placeholder="Task Description"
-          ></textarea>
+          ></textarea><!--7-->
         </div>
         <div class="edit-task-div">
           <label class="label-modal-window" for="edit-select-status"
             >Current Status</label
-          >
+          ><!--8-->
           <select name="status" id="edit-select-status">
             <option value="todo">todo</option>
             <option value="doing">doing</option>
             <option value="done">done</option>
-          </select>
+          </select><!--9-->
         </div>
-        <div class="edit-task-div button-group">
+        <div class="edit-task-div button-group"><!--10-->
           <button type="button" class="editBtns" id="save-task-changes-btn">
             Save Changes
-          </button>
+          </button><!--11-->
           <button type="button" class="editBtns" id="cancel-edit-btn">
             Cancel
-          </button>
+          </button><!--12-->
           <button type="button" class="editBtns" id="delete-task-btn">
             Delete Task
-          </button>
+          </button><!--13-->
         </div>
       </form>
     </div>

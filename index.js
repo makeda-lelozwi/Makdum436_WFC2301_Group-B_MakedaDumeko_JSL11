@@ -79,7 +79,23 @@ const elements = {
   createTaskBtn: document.getElementById("create-task-btn"),
   cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
 
-  //
+  //EDIT TASK MODAL (form for editing an exisiting task's details)
+  editTaskModalWindow: document.getElementById("edit-task-modal-window"),
+  editTaskForm: document.getElementById("edit-task-form"),
+  editTaskHeader: document.getElementById("edit-task-header"),
+  editTaskDiv: document.querySelector("edit-task-div"),
+  editTaskTitleInput: document.getElementById("edit-task-title-input"),
+  editBtn: document.getElementById("edit-btn"),
+  editTaskDescInput: document.getElementById("edit-task-desc-input"),
+  labelModalWindow: document.querySelector("label-modal-window"),
+  editSelectStatus: document.getElementById("edit-select-status"),
+  editTaskDivBtnGrp: document.querySelector("edit-task-div button-group"),
+  saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
+  cancelEditBtn: document.getElementById("cancel-edit-btn"),
+  deleteTaskBtn: document.getElementById("delete-task-btn"),
+
+  //FILTER DIV
+  filterDiv: document.getElementById("filterDiv"),
 }
 
 let activeBoard = ""
