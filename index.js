@@ -12,7 +12,8 @@ import { initialData } from "./initialData.js";
 // 2. get started with displaying the names of the boards onto the sidebar
 
 //DID:
-//1. Worked on filterAndDisplayTasksByBoard
+//1. Worked on displaying the boards in the sidebar
+//2. toggling the themes
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
@@ -26,6 +27,8 @@ function initializeData() {
     console.log("Data already exists in localStorage");
   }
 }
+
+initializeData();
 
 const elements = {
   //SIDE-BAR
@@ -97,7 +100,7 @@ const elements = {
   editTaskDescInput: document.getElementById("edit-task-desc-input"),
   labelModalWindow: document.querySelector(".label-modal-window"),
   editSelectStatus: document.getElementById("edit-select-status"),
-  editTaskDivBtnGrp: document.querySelector(".edit-task-div button-group"),
+  editTaskDivBtnGrp: document.querySelector(".edit-task-div .button-group"),
   saveTaskChangesBtn: document.getElementById("save-task-changes-btn"),
   cancelEditBtn: document.getElementById("cancel-edit-btn"),
   deleteTaskBtn: document.getElementById("delete-task-btn"),
@@ -118,7 +121,7 @@ function fetchAndDisplayBoardsAndTasks() {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
     activeBoard = localStorageBoard ? localStorageBoard : boards[0];
     elements.headerBoardName.textContent = activeBoard;
-    //localStorage.setItem("activeBoard", activeBoard)
+    localStorage.setItem("activeBoard", JSON.stringify(activeBoard));
     styleActiveBoard(activeBoard);
     refreshTasksUI();
   }
@@ -127,7 +130,7 @@ function fetchAndDisplayBoardsAndTasks() {
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
-  elements.boardsContainer.innerHTML = ""; // Clears the container
+  //elements.boardsContainer.innerHTML = ""; // This shouldn't be here as it hides the board navs links div so I'll comment it out
   boards.forEach((board) => {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
@@ -139,7 +142,7 @@ function displayBoards(boards) {
       localStorage.setItem("activeBoard", JSON.stringify(activeBoard));
       styleActiveBoard(activeBoard);
     });
-    boardsContainer.appendChild(boardElement);
+    elements.boardsContainer.appendChild(boardElement);
   });
 }
 
@@ -163,7 +166,7 @@ function filterAndDisplayTasksByBoard(boardName) {
     column.appendChild(tasksContainer);
 
     filteredTasks
-      .filter((task) => (task.status = status))
+      .filter((task) => task.status === status)
       .forEach((task) => {
         const taskElement = document.createElement("div");
         taskElement.classList.add("task-div");
@@ -289,7 +292,7 @@ function addTask(event) {
 
 function toggleSidebar(show) {
   if (show) {
-    console.log("show sidebar button clicked");
+    //console.log("show sidebar button clicked");
     elements.sidebar.style.display = "flex";
     elements.showSideBarBtn.style.display = "none";
   } else {
@@ -299,7 +302,17 @@ function toggleSidebar(show) {
 }
 //how do I make it so that the sidebar stays in the chosen setting after i refresh the page?
 
-function toggleTheme() {}
+function toggleTheme() {
+  const body = document.body;
+
+  //toggle between light-mode and dark-mode classes
+  body.classList.toggle("light-theme");
+  body.classList.toggle("dark-theme");
+
+  //save theme preference to local storage
+  const isLightTheme = body.classList.contains("light-theme");
+  localStorage.setItem("theme", isLightTheme ? "light" : "dark");
+}
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
