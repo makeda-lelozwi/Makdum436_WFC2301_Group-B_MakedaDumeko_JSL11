@@ -7,10 +7,12 @@ import {
 } from "./utils/taskFunctions.js";
 import { initialData } from "./initialData.js";
 
-//TO:DO
+//TO-DO
 // 1. make it so the sidebar stays open/closed after refreshing depending on what was selected before refresh
 // 2. get started with displaying the names of the boards onto the sidebar
 
+//DID:
+//1. Worked on filterAndDisplayTasksByBoard
 /*************************************************************************************************************************************************
  * FIX BUGS!!!
  * **********************************************************************************************************************************************/
@@ -30,7 +32,7 @@ const elements = {
   sidebar: document.querySelector(".side-bar"),
   sidebarDiv: document.getElementById("side-bar-div"),
   sidelogoDiv: document.getElementById("side-logo-div"),
-  boardsNavLinksDiv: document.getElementById("boards-nav-links-div"),
+  boardsContainer: document.getElementById("boards-nav-links-div"),
   sideBarBottom: document.querySelector(".side-bar-bottom"),
   toggleDiv: document.querySelector(".toggle-div"),
   themeSwitch: document.getElementById("switch"),
@@ -116,6 +118,7 @@ function fetchAndDisplayBoardsAndTasks() {
     const localStorageBoard = JSON.parse(localStorage.getItem("activeBoard"));
     activeBoard = localStorageBoard ? localStorageBoard : boards[0];
     elements.headerBoardName.textContent = activeBoard;
+    //localStorage.setItem("activeBoard", activeBoard)
     styleActiveBoard(activeBoard);
     refreshTasksUI();
   }
@@ -124,8 +127,7 @@ function fetchAndDisplayBoardsAndTasks() {
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
-  const boardsContainer = document.getElementById("boards-nav-links-div");
-  boardsContainer.innerHTML = ""; // Clears the container
+  elements.boardsContainer.innerHTML = ""; // Clears the container
   boards.forEach((board) => {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
@@ -145,7 +147,7 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter((task) => (task.board = boardName));
+  const filteredTasks = tasks.filter((task) => task.board === boardName);
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
