@@ -94,7 +94,7 @@
         <button class="edit-btn" id="edit-board-btn">
           <p id="three-dots-icon">&#8942;</p></button
         ><!--7-->
-        
+
         <div id="editBoardDiv" class="editBtnsDiv">
           <button class="editBtns" id="deleteBoardBtn">Delete Board</button
           ><!--8-->
@@ -102,46 +102,59 @@
         <!--9-->
       </header>
 
-      <div class="container"><!--1-->
-        <main class="card-column-main"> <!--2-->
+      <div class="container">
+        <!--1-->
+        <main class="card-column-main">
+          <!--2-->
 
           <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
-          <div class="column-div" data-status="todo"><!--3-->
-            <div id="todo-head-div" class="column-head-div"><!--4-->
+          <div class="column-div" data-status="todo">
+            <!--3-->
+            <div id="todo-head-div" class="column-head-div">
+              <!--4-->
               <span class="dot" id="todo-dot"></span>
               <h4 id="toDoText" class="columnHeader">TODO</h4>
             </div>
             <!-- Tasks container for TODO -->
-            <div class="tasks-container"></div><!--5-->
+            <div class="tasks-container"></div>
+            <!--5-->
           </div>
 
           <!-- DOING Column -->
-          <div class="column-div" data-status="doing"><!--6-->
-            <div id="doing-head-div" class="column-head-div"><!--7-->
+          <div class="column-div" data-status="doing">
+            <!--6-->
+            <div id="doing-head-div" class="column-head-div">
+              <!--7-->
               <span class="dot" id="doing-dot"></span>
               <h4 id="doingText" class="columnHeader">DOING</h4>
             </div>
             <!-- Tasks container for DOING -->
-            <div class="tasks-container"></div><!--8-->
+            <div class="tasks-container"></div>
+            <!--8-->
           </div>
 
           <!-- DONE Column -->
-          <div class="column-div" data-status="done"><!--9-->
-            <div id="done-head-div" class="column-head-div"><!--10-->
+          <div class="column-div" data-status="done">
+            <!--9-->
+            <div id="done-head-div" class="column-head-div">
+              <!--10-->
               <span class="dot" id="done-dot"></span>
               <h4 id="doneText" class="columnHeader">DONE</h4>
             </div>
             <!-- Tasks container for DONE -->
-            <div class="tasks-container"></div><!--11-->
+            <div class="tasks-container"></div>
+            <!--11-->
           </div>
         </main>
       </div>
     </div>
 
     <!-- New Task Modal: Form for adding a new task. -->
-    <form class="modal-window" id="new-task-modal-window"><!--1-->
+    <form class="modal-window" id="new-task-modal-window">
+      <!--1-->
       <h4 class="modal-title">Add New Task</h4>
-      <div class="input-div"><!--2-->
+      <div class="input-div">
+        <!--2-->
         <label
           class="label-modal-window"
           id="modal-title-input"
@@ -155,7 +168,8 @@
           placeholder="e.g. Take a little break"
         /><!--4-->
       </div>
-      <div class="input-div"><!--5-->
+      <div class="input-div">
+        <!--5-->
         <label class="label-modal-window" id="modal-desc-input" for="desc-input"
           >Description</label
         ><!--6-->
@@ -163,9 +177,11 @@
           name="description"
           id="desc-input"
           placeholder="e.g. Pet your dog, have a cup of coffee, dance to your favourite song and come back to conquer this challenge. 💪🏾"
-        ></textarea><!--7-->
+        ></textarea
+        ><!--7-->
       </div>
-      <div class="input-div"><!--8-->
+      <div class="input-div">
+        <!--8-->
         <label
           class="label-modal-window"
           id="modal-select-status"
@@ -175,37 +191,44 @@
         <select name="status" id="select-status">
           <option value="todo">todo</option>
           <option value="doing">doing</option>
-          <option value="done">done</option>
-        </select><!--10-->
+          <option value="done">done</option></select
+        ><!--10-->
       </div>
-      <div class="button-group"><!--11-->
+      <div class="button-group">
+        <!--11-->
         <button type="submit" class="submit-btn" id="create-task-btn">
-          Create Task
-        </button><!--12-->
+          Create Task</button
+        ><!--12-->
         <button type="button" class="submit-btn" id="cancel-add-task-btn">
-          Cancel
-        </button><!--13-->
+          Cancel</button
+        ><!--13-->
       </div>
     </form>
 
     <!-- Edit Task Modal: Form for editing an existing task's details. -->
-    <div class="edit-task-modal-window"><!--1-->
-      <form id="edit-task-form"><!--2-->
-        <div class="edit-task-div" id="edit-task-header"><!--3-->
+    <div class="edit-task-modal-window">
+      <!--1-->
+      <form id="edit-task-form">
+        <!--2-->
+        <div class="edit-task-div" id="edit-task-header">
+          <!--3-->
           <input
             type="text"
             id="edit-task-title-input"
             class="task-title-input"
             placeholder="Task Title"
           /><!--4-->
-          <button id="edit-btn" class="edit-btn"></button><!--5-->
+          <button id="edit-btn" class="edit-btn"></button
+          ><!--5-->
         </div>
-        <div class="edit-task-div"><!--6-->
+        <div class="edit-task-div">
+          <!--6-->
           <textarea
             id="edit-task-desc-input"
             class="edit-task-description-input"
             placeholder="Task Description"
-          ></textarea><!--7-->
+          ></textarea
+          ><!--7-->
         </div>
         <div class="edit-task-div">
           <label class="label-modal-window" for="edit-select-status"
@@ -214,19 +237,20 @@
           <select name="status" id="edit-select-status">
             <option value="todo">todo</option>
             <option value="doing">doing</option>
-            <option value="done">done</option>
-          </select><!--9-->
+            <option value="done">done</option></select
+          ><!--9-->
         </div>
-        <div class="edit-task-div button-group"><!--10-->
+        <div class="edit-task-div button-group">
+          <!--10-->
           <button type="button" class="editBtns" id="save-task-changes-btn">
-            Save Changes
-          </button><!--11-->
+            Save Changes</button
+          ><!--11-->
           <button type="button" class="editBtns" id="cancel-edit-btn">
-            Cancel
-          </button><!--12-->
+            Cancel</button
+          ><!--12-->
           <button type="button" class="editBtns" id="delete-task-btn">
-            Delete Task
-          </button><!--13-->
+            Delete Task</button
+          ><!--13-->
         </div>
       </form>
     </div>

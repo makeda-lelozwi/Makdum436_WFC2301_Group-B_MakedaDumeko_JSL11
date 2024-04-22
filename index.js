@@ -10,6 +10,7 @@ import { initialData } from "./initialData.js";
 //TO-DO
 // 1. make it so the sidebar stays open/closed after refreshing depending on what was selected before refresh
 // 2. get started with displaying the names of the boards onto the sidebar
+// 3. when the create task button is pressed, push the inputed values to the initial Data js file
 
 //DID:
 //1. Worked on displaying the boards in the sidebar
@@ -54,7 +55,7 @@ const elements = {
   headerNameDiv: document.querySelector(".header-name-div"),
   headerBoardName: document.getElementById("header-board-name"),
   dropdownBtn: document.getElementById("dropdownBtn"),
-  addNewTaskBtn: document.getElementById("add-new-task-btn"),
+  createNewTaskBtn: document.getElementById("add-new-task-btn"),
   editBtn: document.getElementById("edit-board-btn"),
   editBoardDiv: document.getElementById("editBoardDiv"),
   deleteBoardBtn: document.getElementById("deleteBoardBtn"),
@@ -64,7 +65,7 @@ const elements = {
 
   //MAIN (contains repititions)
   cardColumnMain: document.querySelector(".card-column-main"),
-  columnDiv: document.querySelector(".column-div"),
+  columnDiv: document.querySelectorAll(".column-div"),
   taskContainerAll: document.querySelector(".tasks-container"),
 
   //TODO
@@ -77,8 +78,8 @@ const elements = {
   doneHeadDiv: document.getElementById("done-head-div"),
 
   //NEW TASK MODAL (form for creating new a task)
-  modalWindow: document.querySelector("modal-window"),
-  newTaskModalWindow: document.getElementById("new-task-modal-window"),
+  modalWindow: document.querySelector(".modal-window"),
+  //modalWindow: document.getElementById("new-task-modal-window"),
   inputDiv: document.getElementById("input-div"),
   modalTitleInput: document.getElementById("modal-title-input"),
   titleInput: document.getElementById("title-input"),
@@ -87,7 +88,7 @@ const elements = {
   modalSelectStatus: document.getElementById("modal-select-status"),
   selectStatus: document.getElementById("select-status"),
   btnGroup: document.querySelector(".button-group"),
-  createNewTaskBtn: document.getElementById("create-task-btn"),
+  createTaskBtn: document.getElementById("create-task-btn"),
   cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
 
   //EDIT TASK MODAL (form for editing an exisiting task's details)
@@ -130,12 +131,12 @@ function fetchAndDisplayBoardsAndTasks() {
 // Creates different boards in the DOM
 // TASK: Fix Bugs
 function displayBoards(boards) {
-  //elements.boardsContainer.innerHTML = ""; // This shouldn't be here as it hides the board navs links div so I'll comment it out
+  //elements.boardsContainer.innerHTML = ""; // This shouldn't be here as it hides the board navs links div
   boards.forEach((board) => {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
     boardElement.classList.add("board-btn");
-    boardElement.addEventListener("click", function () {
+    boardElement.addEventListener("click", () => {
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
       activeBoard = board; //assigns active board
@@ -190,13 +191,13 @@ function refreshTasksUI() {
 // Styles the active board by adding an active class
 // TASK: Fix Bugs
 function styleActiveBoard(boardName) {
-  document.querySelectorAll(".board-btn").foreach((btn) => {
+  document.querySelectorAll(".board-btn").forEach((btn) => {
     if (btn.textContent === boardName) {
-      btn.add("active");
+      btn.classList.add("active");
     } else {
-      btn.remove("active");
+      btn.classList.remove("active");
     }
-  });
+  }); // corrected forEach syntax and used the classlist propertyto add and remove classes
 }
 
 function addTaskToUI(task) {
@@ -223,7 +224,7 @@ function addTaskToUI(task) {
   taskElement.textContent = task.title; // Modify as needed
   taskElement.setAttribute("data-task-id", task.id);
 
-  tasksContainer.appendChild();
+  tasksContainer.appendChild(taskElement);
 }
 
 function setupEventListeners() {
@@ -255,22 +256,34 @@ function setupEventListeners() {
 
   // Show Add New Task Modal event listener
   elements.createNewTaskBtn.addEventListener("click", () => {
+    console.log("create new task button clicked");
     toggleModal(true);
     elements.filterDiv.style.display = "block"; // Also show the filter overlay
   });
 
-  // Add new task form submission event listener
-  // elements.modalWindow.addEventListener("submit", (event) => {
-  //   addTask(event);
-  // });
+  //Add new task form submission event listener
+  elements.modalWindow.addEventListener("submit", (event) => {
+    addTask(event);
+  });
 }
 
 // Toggles tasks modal
-// Task: Fix bugs
+//Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
-  modal.style.display = show ? "block" : "none";
+  if (show) {
+    modal.style.display = "block";
+  } else {
+    modal.style.display = "none";
+  }
 }
 
+function toggleEditTaskModal(show, modal = elements.editTaskModal) {
+  if (show) {
+    modal.style.display = "block";
+  } else {
+    modal.style.display = "none";
+  }
+}
 /*************************************************************************************************************************************************
  * COMPLETE FUNCTION CODE
  * **********************************************************************************************************************************************/
@@ -316,26 +329,34 @@ function toggleTheme() {
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
+  console.log("task selected");
+  elements.editTaskTitleInput.value = task.title;
+  elements.editTaskDescInput.value = task.description;
+  elements.editSelectStatus.value = task.status;
 
-  // Get button elements from the task modal
+  toggleEditTaskModal(true, elements.editTaskModal);
 
-  // Call saveTaskChanges upon click of Save Changes button
+  elements.saveTaskChangesBtn.addEventListener("click", () => {
+    saveTaskChanges(task.id);
+  });
+  elements.deleteTaskBtn.addEventListener("click", () => {
+    deleteTask(task.id);
+    toggleEditTaskModal(false, elements.editTaskModal);
+  });
 
-  // Delete task using a helper function and close the task modal
-
-  toggleModal(true, elements.editTaskModal); // Show the edit task modal
+  // Show the edit task modal
 }
 
 function saveTaskChanges(taskId) {
   // Get new user inputs
+  const titleInput = document
+    // Create an object with the updated task details
 
-  // Create an object with the updated task details
+    // Update task using a hlper functoin
 
-  // Update task using a hlper functoin
+    // Close the modal and refresh the UI to reflect the changes
 
-  // Close the modal and refresh the UI to reflect the changes
-
-  refreshTasksUI();
+    .refreshTasksUI();
 }
 
 /*************************************************************************************************************************************************/
