@@ -66,7 +66,7 @@ const elements = {
   //MAIN (contains repititions)
   cardColumnMain: document.querySelector(".card-column-main"),
   columnDiv: document.querySelectorAll(".column-div"),
-  taskContainerAll: document.querySelector(".tasks-container"),
+  //taskContainerAll: document.querySelector(".tasks-container"),
 
   //TODO
   todoHeadDiv: document.getElementById("todo-head-div"),
@@ -79,6 +79,7 @@ const elements = {
 
   //NEW TASK MODAL (form for creating new a task)
   modalWindow: document.getElementById("new-task-modal-window"),
+
   //modalWindow: document.getElementById("new-task-modal-window"),
   inputDiv: document.getElementById("input-div"),
   modalTitleInput: document.getElementById("modal-title-input"),
@@ -207,27 +208,36 @@ function styleActiveBoard(boardName) {
 }
 
 function addTaskToUI(task) {
-  const column = document.querySelector(
-    '.column-div[data-status="${task.status}"]'
+  if (!task.status) {
+    console.error(`Status not defined for task: ${task.id}`);
+    return;
+  }
+
+  const columns = document.querySelectorAll(
+    `.column-div[data-status="${task.status}"]`
   );
-  if (!column) {
+  if (!columns.length) {
     console.error(`Column not found for status: ${task.status}`);
     return;
   }
 
-  let tasksContainer = column.querySelector(".tasks-container");
-  if (!tasksContainer) {
-    console.warn(
-      `Tasks container not found for status: ${task.status}, creating one.`
-    );
+  columns.forEach((column) => {
+    let tasksContainer = column.querySelector(".tasks-container");
+
+    if (!tasksContainer) {
+      console.warn(
+        `Tasks container not found for status: ${task.status}, creating one.`
+      );
+    }
+
     tasksContainer = document.createElement("div");
     tasksContainer.className = "tasks-container";
-    column.appendChild(tasksContainer);
-  }
+    columns.appendChild(tasksContainer);
+  });
 
   const taskElement = document.createElement("div");
   taskElement.className = "task-div";
-  taskElement.textContent = task.title; // Modify as needed
+  taskElement.innerHTML = `${task.title}`; // Modify as needed
   taskElement.setAttribute("data-task-id", task.id);
 
   tasksContainer.appendChild(taskElement);
@@ -295,6 +305,7 @@ function addTask(event) {
   //Assign user input to the task object
   const task = {};
   const newTask = createNewTask(task);
+
   if (newTask) {
     addTaskToUI(newTask);
     toggleModal(false);
@@ -341,6 +352,7 @@ function openEditTaskModal(task) {
     console.log("save tasks button pressed");
     saveTaskChanges(task.id);
   });
+
   elements.deleteTaskBtn.addEventListener("click", () => {
     deleteTask(task.id);
     toggleModal(false, elements.editTaskModal);
