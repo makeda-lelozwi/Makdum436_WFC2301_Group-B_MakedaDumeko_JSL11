@@ -216,6 +216,7 @@ function addTaskToUI(task) {
   const columns = document.querySelectorAll(
     `.column-div[data-status="${task.status}"]`
   );
+
   if (!columns.length) {
     console.error(`Column not found for status: ${task.status}`);
     return;
@@ -228,19 +229,18 @@ function addTaskToUI(task) {
       console.warn(
         `Tasks container not found for status: ${task.status}, creating one.`
       );
+      tasksContainer = document.createElement("div");
+      tasksContainer.className = "tasks-container";
+      column.appendChild(tasksContainer);
     }
 
-    tasksContainer = document.createElement("div");
-    tasksContainer.className = "tasks-container";
-    columns.appendChild(tasksContainer);
+    const taskElement = document.createElement("div");
+    taskElement.className = "task-div";
+    taskElement.innerHTML = `${task.title}`; // Modify as needed
+    taskElement.setAttribute("data-task-id", task.id);
+
+    tasksContainer.appendChild(taskElement);
   });
-
-  const taskElement = document.createElement("div");
-  taskElement.className = "task-div";
-  taskElement.innerHTML = `${task.title}`; // Modify as needed
-  taskElement.setAttribute("data-task-id", task.id);
-
-  tasksContainer.appendChild(taskElement);
 }
 
 function setupEventListeners() {
