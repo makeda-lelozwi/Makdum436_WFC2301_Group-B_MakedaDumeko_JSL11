@@ -66,7 +66,7 @@ const elements = {
   //MAIN (contains repititions)
   cardColumnMain: document.querySelector(".card-column-main"),
   columnDiv: document.querySelectorAll(".column-div"),
-  //taskContainerAll: document.querySelector(".tasks-container"),
+  tasksContainerAll: document.querySelector(".tasks-container"),
 
   //TODO
   todoHeadDiv: document.getElementById("todo-head-div"),
@@ -208,27 +208,30 @@ function styleActiveBoard(boardName) {
 }
 
 function addTaskToUI(task) {
-  if (!task.status) {
-    console.error(`Status not defined for task: ${task.id}`);
-    return;
-  }
+  // if (!task.status) {
+  //   console.error(`Status not defined for task: ${task.id}`);
+  //   return;
+  // }
 
   const columns = document.querySelectorAll(
     `.column-div[data-status="${task.status}"]`
   );
 
-  if (!columns.length) {
-    console.error(`Column not found for status: ${task.status}`);
-    return;
-  }
+  // if (!columns.length) {
+  //   console.error(`Column not found for status: ${task.status}`);
+  //   return;
+  // }
 
   columns.forEach((column) => {
-    let tasksContainer = column.querySelector(".tasks-container");
+    let tasksContainer = elements.tasksContainerAll;
+
+    console.log(tasksContainer);
 
     if (!tasksContainer) {
       console.warn(
         `Tasks container not found for status: ${task.status}, creating one.`
       );
+
       tasksContainer = document.createElement("div");
       tasksContainer.className = "tasks-container";
       column.appendChild(tasksContainer);
@@ -238,6 +241,7 @@ function addTaskToUI(task) {
     taskElement.className = "task-div";
     taskElement.innerHTML = `${task.title}`; // Modify as needed
     taskElement.setAttribute("data-task-id", task.id);
+    console.log(taskElement);
 
     tasksContainer.appendChild(taskElement);
   });
