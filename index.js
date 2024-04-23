@@ -78,7 +78,7 @@ const elements = {
   doneHeadDiv: document.getElementById("done-head-div"),
 
   //NEW TASK MODAL (form for creating new a task)
-  modalWindow: document.querySelector(".modal-window"),
+  modalWindow: document.getElementById("new-task-modal-window"),
   //modalWindow: document.getElementById("new-task-modal-window"),
   inputDiv: document.getElementById("input-div"),
   modalTitleInput: document.getElementById("modal-title-input"),
@@ -92,7 +92,7 @@ const elements = {
   cancelAddTaskBtn: document.getElementById("cancel-add-task-btn"),
 
   //EDIT TASK MODAL (form for editing an exisiting task's details)
-  editTaskModal: document.getElementById("edit-task-modal-window"),
+  editTaskModal: document.querySelector(".edit-task-modal-window"),
   editTaskForm: document.getElementById("edit-task-form"),
   editTaskHeader: document.getElementById("edit-task-header"),
   editTaskDiv: document.querySelector(".edit-task-div"),
@@ -237,7 +237,7 @@ function setupEventListeners() {
   // Cancel adding new task event listener
   const cancelAddTaskBtn = document.getElementById("cancel-add-task-btn");
   cancelAddTaskBtn.addEventListener("click", () => {
-    toggleModal(false);
+    toggleModal(false, elements.modalWindow);
     elements.filterDiv.style.display = "none"; // Also hide the filter overlay
   });
 
@@ -272,18 +272,13 @@ function setupEventListeners() {
 function toggleModal(show, modal = elements.modalWindow) {
   if (show) {
     modal.style.display = "block";
+    console.log(modal.style.display);
   } else {
     modal.style.display = "none";
+    console.log(modal.style.display);
   }
 }
 
-function toggleEditTaskModal(show, modal = elements.editTaskModal) {
-  if (show) {
-    modal.style.display = "block";
-  } else {
-    modal.style.display = "none";
-  }
-}
 /*************************************************************************************************************************************************
  * COMPLETE FUNCTION CODE
  * **********************************************************************************************************************************************/
@@ -334,29 +329,39 @@ function openEditTaskModal(task) {
   elements.editTaskDescInput.value = task.description;
   elements.editSelectStatus.value = task.status;
 
-  toggleEditTaskModal(true, elements.editTaskModal);
+  toggleModal(true, elements.editTaskModal);
 
   elements.saveTaskChangesBtn.addEventListener("click", () => {
     saveTaskChanges(task.id);
   });
   elements.deleteTaskBtn.addEventListener("click", () => {
     deleteTask(task.id);
-    toggleEditTaskModal(false, elements.editTaskModal);
+    toggleModal(false, elements.editTaskModal);
   });
 
   // Show the edit task modal
 }
 
 function saveTaskChanges(taskId) {
-  // Get new user inputs
-  const titleInput = document
-    // Create an object with the updated task details
+  // Got new user inputs
+  elements.editTaskTitleInput;
+  elements.editTaskDescInput;
+  elements.editSelectStatus;
 
-    // Update task using a hlper functoin
+  // Created an object with the updated task details
+  const updatedTask = {
+    id: taskId,
+    title: editTaskTitleInput.value,
+    description: elements.editTaskDescInput.value,
+    status: elements.editSelectStatus.value,
+  };
+  // Updated task using a hlper functoin
+  patchTask(taskId, updatedTask);
 
-    // Close the modal and refresh the UI to reflect the changes
+  // Closed the modal and refresh the UI to reflect the changes
+  toggleModal(false, elements.editTaskModal);
 
-    .refreshTasksUI();
+  refreshTasksUI();
 }
 
 /*************************************************************************************************************************************************/
