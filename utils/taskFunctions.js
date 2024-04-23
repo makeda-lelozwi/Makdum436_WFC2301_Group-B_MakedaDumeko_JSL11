@@ -25,13 +25,14 @@ export const createNewTask = (task) => {
 
   task = {
     ...task,
+
     title: title,
     description: description,
     status: status,
   };
 
   const newTask = { ...task, id: new Date().getTime() }; // Create new task with unique ID
-  console.log(newTask);
+  // console.log(newTask);
 
   tasks.push(newTask); // Add new task to the array
 

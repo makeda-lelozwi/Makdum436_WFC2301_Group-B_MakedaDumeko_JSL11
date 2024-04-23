@@ -171,7 +171,7 @@ function filterAndDisplayTasksByBoard(boardName) {
       (task) => task.board === boardName && task.status === status
     );
 
-    console.log(filteredTasks);
+    //console.log(filteredTasks);
 
     filteredTasks
       .filter((task) => task.status === status)
@@ -225,7 +225,7 @@ function addTaskToUI(task) {
   columns.forEach((column) => {
     let tasksContainer = elements.tasksContainerAll;
 
-    console.log(tasksContainer);
+    //console.log(tasksContainer);
 
     if (!tasksContainer) {
       console.warn(
@@ -241,12 +241,14 @@ function addTaskToUI(task) {
     taskElement.className = "task-div";
     taskElement.innerHTML = `${task.title}`; // Modify as needed
     taskElement.setAttribute("data-task-id", task.id);
-    console.log(taskElement.innerHTML);
+    // console.log(taskElement.innerHTML);
 
     tasksContainer.appendChild(taskElement);
-    console.log(tasksContainer);
-    
+    //console.log(tasksContainer);
   });
+
+  //storedTasks.forEach((task) => addTaskToUI(task));
+  console.log(initialData);
 }
 
 function setupEventListeners() {
@@ -278,7 +280,7 @@ function setupEventListeners() {
 
   // Show Add New Task Modal event listener
   elements.createNewTaskBtn.addEventListener("click", () => {
-    console.log("create new task button clicked");
+    //console.log("create new task button clicked");
     toggleModal(true);
     elements.filterDiv.style.display = "block"; // Also show the filter overlay
   });
@@ -294,10 +296,10 @@ function setupEventListeners() {
 function toggleModal(show, modal = elements.modalWindow) {
   if (show) {
     modal.style.display = "block";
-    console.log(modal.style.display);
+    //console.log(modal.style.display);
   } else {
     modal.style.display = "none";
-    console.log(modal.style.display);
+    //console.log(modal.style.display);
   }
 }
 
@@ -315,6 +317,8 @@ function addTask(event) {
   if (newTask) {
     addTaskToUI(newTask);
     toggleModal(false);
+    newTask.board = activeBoard;
+    initialData.push(newTask);
     elements.filterDiv.style.display = "none"; // Also hide the filter overlay
     event.target.reset();
     refreshTasksUI();
@@ -347,7 +351,7 @@ function toggleTheme() {
 
 function openEditTaskModal(task) {
   // Set task details in modal inputs
-  console.log("task selected");
+  // console.log("task selected");
   elements.editTaskTitleInput.value = task.title;
   elements.editTaskDescInput.value = task.description;
   elements.editSelectStatus.value = task.status;
@@ -355,7 +359,7 @@ function openEditTaskModal(task) {
   toggleModal(true, elements.editTaskModal);
 
   elements.saveTaskChangesBtn.addEventListener("click", () => {
-    console.log("save tasks button pressed");
+    //console.log("save tasks button pressed");
     saveTaskChanges(task.id);
   });
 
