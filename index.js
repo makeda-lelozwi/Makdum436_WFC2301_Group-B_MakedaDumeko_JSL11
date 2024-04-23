@@ -151,7 +151,7 @@ function displayBoards(boards) {
 // TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  const filteredTasks = tasks.filter((task) => task.board === boardName);
+  // const filteredTasks = tasks.filter((task) => task.board === boardName);
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -165,6 +165,12 @@ function filterAndDisplayTasksByBoard(boardName) {
 
     const tasksContainer = document.createElement("div");
     column.appendChild(tasksContainer);
+
+    const filteredTasks = tasks.filter(
+      (task) => task.board === boardName && task.status === status
+    );
+
+    console.log(filteredTasks);
 
     filteredTasks
       .filter((task) => task.status === status)
@@ -332,11 +338,13 @@ function openEditTaskModal(task) {
   toggleModal(true, elements.editTaskModal);
 
   elements.saveTaskChangesBtn.addEventListener("click", () => {
+    console.log("save tasks button pressed");
     saveTaskChanges(task.id);
   });
   elements.deleteTaskBtn.addEventListener("click", () => {
     deleteTask(task.id);
     toggleModal(false, elements.editTaskModal);
+    location.reload();
   });
 
   // Show the edit task modal
@@ -344,16 +352,16 @@ function openEditTaskModal(task) {
 
 function saveTaskChanges(taskId) {
   // Got new user inputs
-  elements.editTaskTitleInput;
-  elements.editTaskDescInput;
-  elements.editSelectStatus;
+  const titleInput = document.getElementById("edit-task-title-input");
+  const descInput = document.getElementById("edit-task-desc-input");
+  const statusSelect = document.getElementById("edit-select-status");
 
   // Created an object with the updated task details
   const updatedTask = {
     id: taskId,
-    title: editTaskTitleInput.value,
-    description: elements.editTaskDescInput.value,
-    status: elements.editSelectStatus.value,
+    title: titleInput.value,
+    description: descInput.value,
+    status: statusSelect.value,
   };
   // Updated task using a hlper functoin
   patchTask(taskId, updatedTask);
@@ -362,6 +370,8 @@ function saveTaskChanges(taskId) {
   toggleModal(false, elements.editTaskModal);
 
   refreshTasksUI();
+
+  location.reload();
 }
 
 /*************************************************************************************************************************************************/
