@@ -241,9 +241,11 @@ function addTaskToUI(task) {
     taskElement.className = "task-div";
     taskElement.innerHTML = `${task.title}`; // Modify as needed
     taskElement.setAttribute("data-task-id", task.id);
-    console.log(taskElement);
+    console.log(taskElement.innerHTML);
 
     tasksContainer.appendChild(taskElement);
+    console.log(tasksContainer);
+    
   });
 }
 
