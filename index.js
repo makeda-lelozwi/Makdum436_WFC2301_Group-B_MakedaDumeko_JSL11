@@ -258,7 +258,7 @@ function setupEventListeners() {
   elements.showSideBarBtn.addEventListener("click", () => toggleSidebar(true));
 
   // Theme switch event listener
-  elements.themeSwitch.addEventListener("change", toggleTheme);
+  elements.themeSwitch.addEventListener("click", toggleTheme);
 
   // Show Add New Task Modal event listener
   elements.createNewTaskBtn.addEventListener("click", () => {
@@ -329,10 +329,17 @@ function toggleSidebar(show) {
 
 function toggleTheme() {
   const body = document.body;
+  const sideLogo = document.getElementById("side-logo-div");
 
   //toggle between light-mode and dark-mode classes
   body.classList.toggle("light-theme");
   body.classList.toggle("dark-theme");
+
+  if ((body.classList = "light-theme")) {
+    sideLogo.innerHTML = `<img id="logo" src="./assets/logo-light.svg" alt="logo-dark" />`;
+  } else if ((body.classList = "dark-theme")) {
+    sideLogo.innerHTML = `<img id="logo" src="./assets/logo-dark.svg" alt="logo-dark" />`;
+  }
 
   //save theme preference to local storage
   const isLightTheme = body.classList.contains("light-theme");
