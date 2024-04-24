@@ -130,9 +130,8 @@ function fetchAndDisplayBoardsAndTasks() {
 }
 
 // Creates different boards in the DOM
-// TASK: Fix Bugs
 function displayBoards(boards) {
-  //elements.boardsContainer.innerHTML = ""; // This shouldn't be here as it hides the board navs links div
+  elements.boardsContainer.innerHTML = "";
   boards.forEach((board) => {
     const boardElement = document.createElement("button");
     boardElement.textContent = board;
@@ -140,7 +139,7 @@ function displayBoards(boards) {
     boardElement.addEventListener("click", () => {
       elements.headerBoardName.textContent = board;
       filterAndDisplayTasksByBoard(board);
-      activeBoard = board; //assigns active board
+      activeBoard = board; //fixed the syntax for assigning boards
       localStorage.setItem("activeBoard", JSON.stringify(activeBoard));
       styleActiveBoard(activeBoard);
     });
@@ -149,10 +148,8 @@ function displayBoards(boards) {
 }
 
 // Filters tasks corresponding to the board name and displays them on the DOM.
-// TASK: Fix Bugs
 function filterAndDisplayTasksByBoard(boardName) {
   const tasks = getTasks(); // Fetch tasks from a simulated local storage function
-  // const filteredTasks = tasks.filter((task) => task.board === boardName);
 
   // Ensure the column titles are set outside of this function or correctly initialized before this function runs
 
@@ -170,8 +167,6 @@ function filterAndDisplayTasksByBoard(boardName) {
     const filteredTasks = tasks.filter(
       (task) => task.board === boardName && task.status === status
     );
-
-    //console.log(filteredTasks);
 
     filteredTasks
       .filter((task) => task.status === status)
@@ -196,7 +191,6 @@ function refreshTasksUI() {
 }
 
 // Styles the active board by adding an active class
-// TASK: Fix Bugs
 function styleActiveBoard(boardName) {
   document.querySelectorAll(".board-btn").forEach((btn) => {
     if (btn.textContent === boardName) {
@@ -208,46 +202,34 @@ function styleActiveBoard(boardName) {
 }
 
 function addTaskToUI(task) {
-  // if (!task.status) {
-  //   console.error(`Status not defined for task: ${task.id}`);
-  //   return;
-  // }
-
-  const columns = document.querySelectorAll(
+  const column = document.querySelectorAll(
     `.column-div[data-status="${task.status}"]`
   );
 
-  // if (!columns.length) {
-  //   console.error(`Column not found for status: ${task.status}`);
-  //   return;
-  // }
+  if (!column) {
+    console.error(`Column not found for status: ${task.status}`);
+    return;
+  }
 
-  columns.forEach((column) => {
-    let tasksContainer = elements.tasksContainerAll;
+  let tasksContainer = elements.tasksContainerAll;
 
-    //console.log(tasksContainer);
+  if (!tasksContainer) {
+    console.warn(
+      `Tasks container not found for status: ${task.status}, creating one.`
+    );
 
-    if (!tasksContainer) {
-      console.warn(
-        `Tasks container not found for status: ${task.status}, creating one.`
-      );
+    tasksContainer = document.createElement("div");
+    tasksContainer.className = "tasks-container";
+    column.appendChild(tasksContainer);
+  }
 
-      tasksContainer = document.createElement("div");
-      tasksContainer.className = "tasks-container";
-      column.appendChild(tasksContainer);
-    }
+  const taskElement = document.createElement("div");
+  taskElement.className = "task-div";
+  taskElement.innerHTML = `${task.title}`; // Modify as needed
+  taskElement.setAttribute("data-task-id", task.id);
 
-    const taskElement = document.createElement("div");
-    taskElement.className = "task-div";
-    taskElement.innerHTML = `${task.title}`; // Modify as needed
-    taskElement.setAttribute("data-task-id", task.id);
-    // console.log(taskElement.innerHTML);
+  tasksContainer.appendChild(taskElement);
 
-    tasksContainer.appendChild(taskElement);
-    //console.log(tasksContainer);
-  });
-
-  //storedTasks.forEach((task) => addTaskToUI(task));
   console.log(initialData);
 }
 
@@ -292,7 +274,6 @@ function setupEventListeners() {
 }
 
 // Toggles tasks modal
-//Task: Fix bugs
 function toggleModal(show, modal = elements.modalWindow) {
   if (show) {
     modal.style.display = "block";
@@ -311,17 +292,27 @@ function addTask(event) {
   event.preventDefault();
 
   //Assign user input to the task object
-  const task = {};
+  const task = {
+    title: document.getElementById("title-input").value,
+    description: document.getElementById("desc-input").value,
+    status: document.getElementById("select-status").value,
+    board: activeBoard,
+  };
   const newTask = createNewTask(task);
 
   if (newTask) {
     addTaskToUI(newTask);
     toggleModal(false);
     newTask.board = activeBoard;
-    initialData.push(newTask);
+
     elements.filterDiv.style.display = "none"; // Also hide the filter overlay
     event.target.reset();
-    refreshTasksUI();
+
+    initialData.push(newTask);
+
+    localStorage.setItem("tasks", JSON.stringify(initialData));
+
+    putTask(newTask);
   }
 }
 
@@ -335,7 +326,6 @@ function toggleSidebar(show) {
     elements.showSideBarBtn.style.display = "block";
   }
 }
-//how do I make it so that the sidebar stays in the chosen setting after i refresh the page?
 
 function toggleTheme() {
   const body = document.body;
@@ -368,8 +358,6 @@ function openEditTaskModal(task) {
     toggleModal(false, elements.editTaskModal);
     location.reload();
   });
-
-  // Show the edit task modal
 }
 
 function saveTaskChanges(taskId) {
@@ -385,7 +373,7 @@ function saveTaskChanges(taskId) {
     description: descInput.value,
     status: statusSelect.value,
   };
-  // Updated task using a hlper functoin
+  // Updated task using a helper functoin
   patchTask(taskId, updatedTask);
 
   // Closed the modal and refresh the UI to reflect the changes
