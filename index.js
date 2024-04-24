@@ -329,23 +329,21 @@ function toggleSidebar(show) {
 
 function toggleTheme() {
   const body = document.body;
-  //const sideLogo = document.getElementById("side-logo-div");
-
-  //save theme preference to local storage
-  const isLightTheme = body.classList.contains("light-theme");
-  localStorage.setItem("theme", isLightTheme ? "dark" : "light");
+  const sideLogo = document.getElementById("side-logo-div");
 
   //toggle between light-mode and dark-mode classes
   body.classList.toggle("light-theme");
   body.classList.toggle("dark-theme");
 
-  if (isLightTheme) {
-    logo.src = "./assets/logo-light.svg";
-  } else {
-    logo.src = "./assets/logo-dark.svg";
+  if ((body.classList = "light-theme")) {
+    sideLogo.innerHTML = `<img id="logo" src="./assets/logo-light.svg" alt="logo-dark" />`;
+  } else if ((body.classList = "dark-theme")) {
+    sideLogo.innerHTML = `<img id="logo" src="./assets/logo-dark.svg" alt="logo-dark" />`;
   }
 
-  body.style.theme
+  //save theme preference to local storage
+  const isLightTheme = body.classList.contains("light-theme");
+  localStorage.setItem("theme", isLightTheme ? "light" : "dark");
 }
 
 function openEditTaskModal(task) {
