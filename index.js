@@ -305,14 +305,8 @@ function addTask(event) {
     toggleModal(false);
     newTask.board = activeBoard;
 
-    elements.filterDiv.style.display = "none"; // Also hide the filter overlay
-    event.target.reset();
-
-    initialData.push(newTask);
-
-    localStorage.setItem("tasks", JSON.stringify(initialData));
-
     putTask(newTask);
+    refreshTasksUI;
   }
 }
 
@@ -363,6 +357,7 @@ function openEditTaskModal(task) {
   elements.deleteTaskBtn.addEventListener("click", () => {
     deleteTask(task.id);
     toggleModal(false, elements.editTaskModal);
+    localStorage.removeItem(task);
     location.reload();
   });
 }

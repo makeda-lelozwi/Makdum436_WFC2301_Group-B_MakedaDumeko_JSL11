@@ -14,6 +14,23 @@ const saveTasks = (tasks) => {
 export const createNewTask = (task) => {
   const tasks = getTasks(); // Retrieve existing tasks
 
+  const title = document.getElementById("title-input").value;
+  const description = document.getElementById("desc-input").value;
+  const status = document.getElementById("select-status").value;
+
+  if (!title || !status) {
+    console.error("Please fill out all fields");
+    return null;
+  }
+
+  task = {
+    ...task,
+
+    title: title,
+    description: description,
+    status: status,
+  };
+
   const newTask = { ...task, id: new Date().getTime() }; // Create new task with unique ID
   // console.log(newTask);
 
@@ -21,7 +38,7 @@ export const createNewTask = (task) => {
 
   saveTasks(tasks); // Save updated tasks array to local storage
 
-  return newTask;
+  return { ...task, id: new Date().getTime() };
 };
 
 export const patchTask = (id, updates) => {
