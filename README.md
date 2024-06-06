@@ -3,6 +3,9 @@
 The second capstone project at CodeSpace was a kanban-inspired application for managing tasks called "Agile Board."
 The main purpose of this project was to debug an existing code base and add additional functionality and so the main focus was on JavaScript. 
 
+#### Link to the application: 
+https://makdum436-agile-board.netlify.app/
+
 #### Loom video link: 
 https://www.loom.com/share/087b5b280e314b18ada669b80b960f26?sid=7c90b0dc-96ef-4bd1-8b2c-92412ef000ca
 
